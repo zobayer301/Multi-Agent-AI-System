@@ -1,0 +1,35 @@
+# Virtual environments
+.venv/
+venv/
+ENV/
+
+# Python cache & compiled bytecode
+__pycache__/
+*.py[cod]
+*.so
+
+# Testing & coverage
+.pytest_cache/
+.coverage
+htmlcov/
+
+# Local databases and vector stores
+data/
+chroma_db/
+*.db
+*.sqlite3
+
+# Secrets and environment files
+.env
+*.env.local
+
+# Git & IDE metadata
+.git/
+.gitignore
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Test verification runners
+main_phase*_test.py
