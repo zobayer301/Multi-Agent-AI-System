@@ -13,6 +13,12 @@ import logging
 import os
 import uuid
 from contextlib import asynccontextmanager
+import sys
+from pathlib import Path
+
+root_dir = Path(__file__).resolve().parent.parent.parent
+if str(root_dir) not in sys.path:
+    sys.path.insert(0, str(root_dir))
 from typing import List, Dict, Any, Optional
 
 from fastapi import FastAPI, HTTPException, status, Query, Response
@@ -124,6 +130,21 @@ async def global_exception_handler(request, exc: Exception):
 # =============================================================================
 # System & Health Endpoints
 # =============================================================================
+
+@app.get("/", tags=["System"])
+async def root():
+    return {
+        "service": "Multi-Agent AI Research & Analysis Assistant API",
+        "status": "online",
+        "documentation": "/docs",
+        "health": "/health",
+        "endpoints": {
+            "research": "/api/research",
+            "history": "/api/history",
+            "knowledge_ingest": "/api/knowledge/ingest",
+            "knowledge_query": "/api/knowledge/query"
+        }
+    }
 
 @app.get("/health", response_model=HealthResponse, tags=["System"])
 @app.get("/api/health", response_model=HealthResponse, tags=["System"])

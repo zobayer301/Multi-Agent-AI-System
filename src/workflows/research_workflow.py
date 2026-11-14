@@ -12,6 +12,7 @@ Manages deterministic end-to-end execution across the specialized agent team:
    recalls historical facts/constraints, and persists final research reports in SQLite.
 """
 
+import asyncio
 import os
 import json
 import logging
