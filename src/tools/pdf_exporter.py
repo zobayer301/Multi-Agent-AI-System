@@ -1,15 +1,18 @@
+from __future__ import annotations
 """
 PDF Exporter Module using ReportLab.
 Transforms structured ReportOutput Pydantic instances into publication-grade PDF documents.
 """
 
 from io import BytesIO
-from typing import Optional
+from typing import Optional, Any, TYPE_CHECKING
 from reportlab.lib.pagesizes import letter
 from reportlab.lib import colors
 from reportlab.lib.styles import getSampleStyleSheet, ParagraphStyle
 from reportlab.platypus import SimpleDocTemplate, Paragraph, Spacer, HRFlowable, KeepTogether
-from src.agents.schemas import ReportOutput
+
+if TYPE_CHECKING:
+    from src.agents.schemas import ReportOutput
 
 
 def generate_pdf_report(report: ReportOutput) -> bytes:
